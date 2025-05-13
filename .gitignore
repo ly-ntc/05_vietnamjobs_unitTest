@@ -1,5 +1,7 @@
 HELP.md
 target/
+htmlReport/
+static/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

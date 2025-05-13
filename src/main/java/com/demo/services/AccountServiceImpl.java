@@ -107,31 +107,31 @@ public class AccountServiceImpl implements AccountService{
 		return mapper.map(accountRepository.findbyUsername(username), new AccountDTO().getClass());
 	}
 
-	   @Override
-	    public Iterable<Account> getAll() {
-	        return accountRepository.findAll();
-	    }
+	@Override
+	public Iterable<Account> getAll() {
+		return accountRepository.findAll();
+	}
 
-	    @Override
-	    public Account getDetail(int id) {
-	        return accountRepository.findById(id).get();
-	    }
+	@Override
+	public Account getDetail(int id) {
+		return accountRepository.findById(id).get();
+	}
 
-	    @Override
-	    public Account find(int id) {
-	        return accountRepository.findById(id).get();
-	    }
-	    @Transactional
-	    @Override
-	    public Boolean updateStatusById(int id, Boolean status) {
-	        return accountRepository.updateStatusById(id, status) > 0;
-	    }
+	@Override
+	public Account find(int id) {
+		return accountRepository.findById(id).get();
+	}
+	@Transactional
+	@Override
+	public Boolean updateStatusById(int id, Boolean status) {
+		return accountRepository.updateStatusById(id, status) > 0;
+	}
 	    
 
 		@Override
 		public Account getByUsername(String username) {
-			return accountRepository.getByUsername(username);
-		}
+				return accountRepository.getByUsername(username);
+			}
 
 	@Override
 	public int countByRoleAndMonthAndYear(int roleId, int month, int year) {
