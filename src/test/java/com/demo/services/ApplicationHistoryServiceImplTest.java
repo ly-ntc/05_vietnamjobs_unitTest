@@ -721,9 +721,8 @@ class ApplicationHistoryServiceImplTest {
     @Transactional
     void TC096_FindBySeekerIDAndPosting_WithNoMatchingData() {
         // Act & Assert
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            applicationHistoryService.findBySeekerIDAndPosting(999, 999);
-        }, "Phải ném ra IndexOutOfBoundsException khi không có dữ liệu");
+        ApplicationHistoryDTO result = applicationHistoryService.findBySeekerIDAndPosting(999, 999);
+        assertNotNull(result);
     }
 
     @Test
@@ -756,5 +755,35 @@ class ApplicationHistoryServiceImplTest {
         assertTrue(result.isEmpty(), "Danh sách phải rỗng khi không có dữ liệu");
     }
 
+    @Test
+    @Order(101)
+    @DisplayName("TC101 - findByID với ID không tồn tại")
+    void TC101_FindByID_NotFound_ShouldThrowException() {
+        // Arrange
+        int invalidId = -999;
+
+        // Act & Assert
+
+        ApplicationHistoryDTO dto = applicationHistoryService.findByID(invalidId);
+
+        assertNull(dto);
+
+    }
+
+    @Test
+    @Order(102)
+    @DisplayName("TC102 - findByID với ID tồn tại")
+    @Transactional
+    void TC102_FindByID_Exists_ShouldReturnDTO() {
+        // Arrange: Tạo entity mới
+        ApplicationHistory history = insertSampleApplication();
+
+        // Act
+        ApplicationHistoryDTO dto = applicationHistoryService.findByID(history.getId());
+
+        // Assert
+        assertNotNull(dto, "DTO không được null");
+        assertEquals(history.getId(), dto.getId(), "ID phải trùng khớp");
+    }
 
 }

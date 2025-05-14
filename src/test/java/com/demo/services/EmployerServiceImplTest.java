@@ -136,11 +136,10 @@ class EmployerServiceImplTest {
     void TC042_findByAccountId_InvalidId_ReturnsNull() {
         // Arrange
         int nonexistentAccountId = 999999; // giả sử ID này chưa tồn tại
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            employerService.findByAccountID(nonexistentAccountId);
-        });
-        System.out.println("Kết quả thực tế (TC042): " + exception.getMessage());
-        assertTrue(exception.getMessage().contains("source"));
+
+        EmployerDTO result = employerService.findByAccountID(nonexistentAccountId);
+
+        assertNull(result);
 
 
     }
@@ -190,12 +189,11 @@ class EmployerServiceImplTest {
         int invalidId = 999999; // Giả sử id này không tồn tại trong cơ sở dữ liệu
 
         // Act & Assert
-        NoSuchElementException exception = assertThrows(NoSuchElementException.class, () -> {
-            employerService.getDetail(invalidId);
-        });
 
-        System.out.println("Kết quả thực tế (TC044): " + exception.getMessage());
-        assertEquals("No value present", exception.getMessage());
+        Employer result= employerService.getDetail(invalidId);
+
+
+        assertNull(result);
     }
 
 

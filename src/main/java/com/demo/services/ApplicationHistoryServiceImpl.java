@@ -23,9 +23,9 @@ public class ApplicationHistoryServiceImpl implements ApplicationHistoryService{
 	public List<ApplicationHistoryDTO> findAll() {
 		return modelMapper.map(applicationHistoryRepository.findAll(), new TypeToken<List<ApplicationHistoryDTO>>() {}.getType());
 	}
-	public static void main(String[] args) {
-		System.out.println(new ApplicationHistoryServiceImpl().findAll());
-	}
+//	public static void main(String[] args) {
+//		System.out.println(new ApplicationHistoryServiceImpl().findAll());
+//	}
 	@Override
 	public ApplicationHistoryDTO findBySeekerID(int id) {
 		return modelMapper.map(applicationHistoryRepository.findBySeekerID(id), ApplicationHistoryDTO.class);
